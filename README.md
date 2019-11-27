@@ -1,1 +1,1 @@
-# Today-is-a-GIF
+# Today is a GIF
