@@ -49,7 +49,7 @@ requests==2.22.0
 six==1.12.0
 SQLAlchemy==1.3.10
 tensorboard==1.13.1
-tensorflow==1.13.1
+tensorflow==1.15.0
 tensorflow-estimator==1.13.0
 termcolor==1.1.0
 toml==0.10.0
