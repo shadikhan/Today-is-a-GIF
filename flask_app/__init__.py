@@ -13,6 +13,7 @@ from flask_sqlalchemy import SQLAlchemy
 #     ]
 # }
 
+import os
 dictConfig(
     {
         "version": 1,
@@ -46,7 +47,8 @@ def create_app():
     ] = b"0)\x08\xe3\xc9\xc8\x83\xb8\xf1\xda\xdb\xd7\xb3\x0eT\x17"
     # app.config['SERVER_NAME'] = '127.0.0.1:5000'
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
+    # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     # talisman.init_app(app)
