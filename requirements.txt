@@ -33,6 +33,7 @@ mccabe==0.6.1
 mock==3.0.5
 pathspec==0.6.0
 protobuf==3.7.1
+psycopg2==2.8.4
 pycodestyle==2.5.0
 pycparser==2.19
 pylint==2.2.2
