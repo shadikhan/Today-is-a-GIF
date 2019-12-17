@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <h2>{{ current_user.username }}</h2>
+    <p>Profile Last Updated: {{ current_user.lastUpdated }}</p>
+</div>
+<div>
+    <form action="" method="post">
+        {{ form.csrf_token }}
+        <div>
+            {{ form.firstInterest.label(class="form-control-label") }}
+            {{ form.firstInterest(class="form-control form-control-lg") }}
+            {% if form.firstInterest.errors %}
+                <div class="alert alert-warning" role="alert">
+                    {% for error in form.firstInterest.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div>
+            {{ form.secondInterest.label(class="form-control-label") }}
+            {{ form.secondInterest(class="form-control form-control-lg") }}
+            {% if form.secondInterest.errors %}
+                <div class="alert alert-warning" role="alert">
+                    {% for error in form.secondInterest.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div>
+            {{ form.thirdInterest.label(class="form-control-label") }}
+            {{ form.thirdInterest(class="form-control form-control-lg") }}
+            {% if form.thirdInterest.errors %}
+                <div class="alert alert-warning" role="alert">
+                    {% for error in form.thirdInterest.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div>
+            {{ form.submit(class="form-control form-control-lg") }}
+        </div>
+    </form>
+</div>
+{% endblock %}

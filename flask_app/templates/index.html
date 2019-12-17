@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>All GIF Posts</h1>
+
+<div class="GIFGallery">
+    {% for post in posts %}
+    <a class="GIFlink">
+        <figure>
+            <img src={{ post.link }} alt="">
+            <figcaption> {{post.title}} </figcaption>
+        </figure>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

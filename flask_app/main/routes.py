@@ -6,6 +6,7 @@ from flask_app.models import GIFPost
 main = Blueprint("main", __name__)
 
 @main.route("/")
+@main.route("/index")
 def index():
     GIFs = GIFPost.query.all()[::-1]
     return render_template("index.html", title="Home", posts=GIFs)

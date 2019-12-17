@@ -1,0 +1,56 @@
+main {
+    width: 80%;
+    margin: 30px auto;
+    font-family: sans-serif;
+  }
+
+  h1 {
+      text-align: center;
+
+  }
+  
+  .GIFGallery {
+      
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* or space-around */
+  }
+  
+  .GIFlink {
+    display: inline-block;
+    margin-bottom: 8px;
+    width: calc(50% - 4px);
+    text-decoration: none;
+    color: black;
+  }
+  
+  @media screen and (min-width: 50em) {
+    .GIFlink {
+      width: calc(25% - 6px);
+    }
+  }
+  
+  .GIFlink:hover img {
+    transform: scale(1.15);
+  }
+  
+  figure {
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  figcaption {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  img {
+    border: none;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    background: #ccc;
+    transition: transform .2s ease-in-out;
+  }
+  
+  

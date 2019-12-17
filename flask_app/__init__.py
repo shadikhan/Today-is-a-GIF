@@ -1,6 +1,6 @@
 from logging.config import dictConfig
 
-from flask import Flask, url_for
+from flask import Flask, url_for, session
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
@@ -55,12 +55,12 @@ def create_app():
     login_manager.init_app(app)
 
     from flask_app.main.routes import main
-    # from flask_app.users.routes import users
-    # from flask_app.posts.routes import posts
+    from flask_app.users.routes import users
+    from flask_app.posts.routes import posts
 
     app.register_blueprint(main)
-    # app.register_blueprint(users)
-    # app.register_blueprint(posts)
+    app.register_blueprint(users)
+    app.register_blueprint(posts)
 
     with app.app_context():
         db.create_all()

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>My GIFs Feed</h1>
+
+<div class="GIFGallery">
+    {% for link in userGIFs %}
+    <a class="GIFlink">
+        <figure>
+            <img src={{ link }} alt="">
+        </figure>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}
