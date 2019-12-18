@@ -150,7 +150,7 @@ def account():
         current_user.interest1 = form.firstInterest.data
         current_user.interest2 = form.secondInterest.data
         current_user.interest3 = form.thirdInterest.data
-        current_user.lastUpdated = datetime.now()
+        current_user.lastUpdated = datetime.utcnow()
         updateUserGIFs()
 
         return redirect(url_for("users.account"))
@@ -161,14 +161,17 @@ def account():
         form.secondInterest.data = current_user.interest2
         form.thirdInterest.data = current_user.interest3
 
-    return render_template("account.html", title="Account", form=form)
+    timeDifference = datetime.utcnow() - current_user.lastUpdatedTime
+    hoursSinceUpdate = divmod(timeDifference.total_seconds(), 3600)[0]
+    
+    return render_template("account.html", title="Account", form=form, hoursSinceUpdate=hoursSinceUpdate)
 
 @users.route("/userFeed")
 @login_required
 def userFeed():
     current_app.logger.info("GET Request hit at /userFeed")
     lastUpdatedTime = current_user.lastUpdated
-    timeDifference = datetime.now() - lastUpdatedTime
+    timeDifference = datetime.utcnow() - lastUpdatedTime
             
     hoursSinceUpdate = divmod(timeDifference.total_seconds(), 3600)[0]
     current_app.logger.info(f"User profile last updated {hoursSinceUpdate} hours ago")
@@ -197,7 +200,7 @@ def updateUserGIFs():
         c.link = gifs[i]
         i += 1
 
-    current_user.lastUpdated = datetime.now()
+    current_user.lastUpdated = datetime.utcnow()
     db.session.commit()
     
 

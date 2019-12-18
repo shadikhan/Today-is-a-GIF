@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(30), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
-    lastUpdated = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    lastUpdated = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     interest1 = db.Column(db.String(60), nullable=False)
     interest2 = db.Column(db.String(60), nullable=False)
