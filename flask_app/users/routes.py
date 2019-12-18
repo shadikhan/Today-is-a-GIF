@@ -171,19 +171,19 @@ def userFeed():
     lastUpdatedTime = current_user.lastUpdated
     timeDifference = datetime.now() - lastUpdatedTime
             
-    # hoursSinceUpdate = divmod(timeDifference.total_seconds(), 3600)[0]
-    # current_app.logger.info(f"User profile last updated {hoursSinceUpdate} hours ago")
+    hoursSinceUpdate = divmod(timeDifference.total_seconds(), 3600)[0]
+    current_app.logger.info(f"User profile last updated {hoursSinceUpdate} hours ago")
 
-    minutesSinceUpdate = divmod(timeDifference.total_seconds(), 60)[0]
-    current_app.logger.info(f"User profile last updated {minutesSinceUpdate} minutes ago")
+    # minutesSinceUpdate = divmod(timeDifference.total_seconds(), 60)[0]
+    # current_app.logger.info(f"User profile last updated {minutesSinceUpdate} minutes ago")
 
-    if minutesSinceUpdate >= 5:
-        current_app.logger.info(f"User profile last updated at least 5 minutes ago, so update their GIFs")
+    if hoursSinceUpdate >= 24:
+        current_app.logger.info(f"User profile last updated at least 24 hours ago, so update their GIFs")
         updateUserGIFs()
     
     userGIFs = UserGIF.query.filter_by(user = current_user).all()
     userGIFs = map(lambda x : x.link, userGIFs)
-    return render_template("userFeed.html", title = "My GIFs Feed", userGIFs = userGIFs)
+    return render_template("userFeed.html", title = "Daily GIFs Feed", userGIFs = userGIFs)
         
 
 def updateUserGIFs():
