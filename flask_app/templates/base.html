@@ -43,7 +43,6 @@
                     <li class="nav-item">
                         <a href={{ url_for('posts.create_post') }} class="nav-link">Create GIF Post!</a>
                     </li>
-                    {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <a href={{ url_for('users.userFeed') }} class="nav-link">Daily GIFs Feed</a>
                     </li>
