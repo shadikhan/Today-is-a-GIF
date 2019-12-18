@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>{{title}}</h1>
+
+<p>Created by Shad Khan, this is a GIF sharing/feed web application. 
+    All users will have the ability to upload and share GIFs to a main feed. 
+    Logged in users have the ability to create and set GIF preferences and access to their own feed page.
+    This personalized feed page retrieves daily tailored GIFs based on a logged-in user's interests via the Giphy Client Python package
+    (wrapper to the Giphy API). Users also have the ability to update their interests whenever they want, resulting in a new set of tailored GIFs. 
+</p>
+{% endblock %}

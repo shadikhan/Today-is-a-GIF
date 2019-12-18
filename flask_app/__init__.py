@@ -4,16 +4,17 @@ from flask import Flask, url_for, session
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-# from flask_talisman import Talisman
-
-# Todo: Need to be changing this to fit whatever I'm going to be taking in. 
-# csp = {
-#     "default-src": [
-#         "'self'",
-#     ]
-# }
+from flask_talisman import Talisman
 
 import os
+
+csp = {
+    "default-src": ["'self'"],
+    "style-src": ["'self'", "stackpath.bootstrapcdn.com"],
+    "script-src": ["cdnjs.cloudflare.com", "stackpath.bootstrapcdn.com", "code.jquery.com"],
+    "img-src": ["*"]
+}
+
 dictConfig(
     {
         "version": 1,
@@ -33,12 +34,11 @@ dictConfig(
     }
 )
 
-# talisman = Talisman()
+talisman = Talisman()
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
 login_manager.login_view = "users.login"
-
 
 def create_app():
     app = Flask(__name__)
@@ -51,7 +51,7 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-    # talisman.init_app(app)
+    talisman.init_app(app)
     db.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
@@ -67,7 +67,7 @@ def create_app():
     with app.app_context():
         db.create_all()
 
-    # talisman.content_security_policy = csp
-    # talisman.content_security_policy_report_uri = "/csp_error_handling"
+    talisman.content_security_policy = csp
+    talisman.content_security_policy_report_uri = "/csp_error_handling"
 
     return app

@@ -35,11 +35,17 @@
                         <a href={{ url_for('main.index') }} class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href={{ url_for('main.about') }} class="nav-link">About</a>
+                        <a href={{ url_for('main.description') }} class="nav-link">Description of App</a>
+                    </li>
+                    <li class="nav-item">
+                            <a href={{ url_for('main.random') }} class="nav-link">Random GIF</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href={{ url_for('posts.create_post') }} class="nav-link">Create GIF Post!</a>
                     </li>
                     {% if current_user.is_authenticated %}
                     <li class="nav-item">
-                        <a href={{ url_for('users.userFeed') }} class="nav-link">My GIF Feed</a>
+                        <a href={{ url_for('users.userFeed') }} class="nav-link">My GIFs Feed</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -74,11 +80,6 @@
 
     <main class="container">
         {% block content %}{% endblock %}
-        <!-- <div class="row">
-            <div class="col-md-12">
-                
-            </div>
-        </div> -->
     </main>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

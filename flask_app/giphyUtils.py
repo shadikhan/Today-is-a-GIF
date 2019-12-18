@@ -24,12 +24,27 @@ def getGIFs(interest):
     
     randomIndices = set()
     ourRange = range(0, len(api_response.data)) # What if len(api_response.data) is less than 3? Deal with issue here.
-    while len(randomIndices) < 3:
-        ourSample = sample(ourRange, 1)[0]
-        randomIndices.add(ourSample)
+
+    if len(ourRange) < 4:
+        randomIndices = {i for i in ourRange}
+    
+    else:
+        while len(randomIndices) < 4:
+            ourSample = sample(ourRange, 1)[0]
+            randomIndices.add(ourSample)
     
     retVal = []
     for i in randomIndices:
         retVal.append(api_response.data[i].images.fixed_height.url)
     
     return retVal
+
+def getRandomGIF():
+    try: 
+        # Search Endpoint
+        api_response = api_instance.gifs_random_get(api_key, rating=rating, fmt=fmt)
+        
+    except ApiException as e:
+        print("Exception when calling DefaultApi->gifs_search_get: %s\n" % e)
+
+    return api_response.data.image_original_url

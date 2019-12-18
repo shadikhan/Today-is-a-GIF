@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
     <div>
-        <h2>Two-Factor Auth Enrollment</h2>
+        <h1>Two-Factor Auth Enrollment</h1>
     </div>
     <div>
         This website requires mandatory 2FA enrollment. 
     </div>
     <!-- Registration Form: -->
     <p>
-        Use a authenticator app to enroll with us! You will need to use this app to login in the future.
+        Use a authenticator app (such as DuoMobile) to enroll with us! You will need to use this app to login in the future. 
+        Once you've downloaded the app, just use your phone camera and scan the barcode! This will open the authenticator app, which will have a constantly updating
+        authentication 6 digit code that you will use to login!
     </p>
     <img src={{ url_for('users.qr_code') }} alt="QR Code for 2FA">
 

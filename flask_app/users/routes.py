@@ -161,11 +161,13 @@ def account():
         form.secondInterest.data = current_user.interest2
         form.thirdInterest.data = current_user.interest3
 
-    return render_template("account.html", title="Account", form=form)
+    lastUpdatedString = current_user.lastUpdated.strftime("%m/%d/%Y at %I:%M %p")
+    return render_template("account.html", title="Account", form=form, lastUpdatedString=lastUpdatedString)
 
 @users.route("/userFeed")
 @login_required
 def userFeed():
+    current_app.logger.info("GET Request hit at /userFeed")
     lastUpdatedTime = current_user.lastUpdated
     timeDifference = datetime.now() - lastUpdatedTime
             
@@ -175,13 +177,13 @@ def userFeed():
     minutesSinceUpdate = divmod(timeDifference.total_seconds(), 60)[0]
     current_app.logger.info(f"User profile last updated {minutesSinceUpdate} minutes ago")
 
-    if minutesSinceUpdate > 5:
+    if minutesSinceUpdate >= 5:
         current_app.logger.info(f"User profile last updated at least 5 minutes ago, so update their GIFs")
         updateUserGIFs()
     
     userGIFs = UserGIF.query.filter_by(user = current_user).all()
     userGIFs = map(lambda x : x.link, userGIFs)
-    return render_template("userFeed.html", title = "User Feed", userGIFs = userGIFs)
+    return render_template("userFeed.html", title = "My GIFs Feed", userGIFs = userGIFs)
         
 
 def updateUserGIFs():
@@ -196,6 +198,7 @@ def updateUserGIFs():
         c.link = gifs[i]
         i += 1
 
+    current_user.lastUpdated = datetime.now()
     db.session.commit()
     
 
