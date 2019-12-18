@@ -161,7 +161,7 @@ def account():
         form.secondInterest.data = current_user.interest2
         form.thirdInterest.data = current_user.interest3
 
-    timeDifference = datetime.utcnow() - current_user.lastUpdatedTime
+    timeDifference = datetime.utcnow() - current_user.lastUpdated
     hoursSinceUpdate = divmod(timeDifference.total_seconds(), 3600)[0]
     
     return render_template("account.html", title="Account", form=form, hoursSinceUpdate=hoursSinceUpdate)
