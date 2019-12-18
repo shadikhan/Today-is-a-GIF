@@ -161,8 +161,7 @@ def account():
         form.secondInterest.data = current_user.interest2
         form.thirdInterest.data = current_user.interest3
 
-    lastUpdatedString = current_user.lastUpdated.strftime("%m/%d/%Y at %I:%M %p")
-    return render_template("account.html", title="Account", form=form, lastUpdatedString=lastUpdatedString)
+    return render_template("account.html", title="Account", form=form)
 
 @users.route("/userFeed")
 @login_required

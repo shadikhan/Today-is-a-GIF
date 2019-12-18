@@ -2,7 +2,7 @@
 {% block content %}
 <div>
     <h2>{{ current_user.username }}</h2>
-    <p>Profile Last Updated: {{ lastUpdatedString}}</p>
+    <p>Profile Last Updated: {{current_user.lastUpdated}}</p>
 </div>
 <div>
     <form action="" method="post">
