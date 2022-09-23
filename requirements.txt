@@ -32,7 +32,7 @@ MarkupSafe==1.1.1
 mccabe==0.6.1
 mock==3.0.5
 pathspec==0.6.0
-protobuf==3.7.1
+protobuf==3.18.3
 psycopg2==2.8.4
 pycodestyle==2.5.0
 pycparser==2.19
